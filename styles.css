@@ -2529,13 +2529,72 @@ p {
     height: 220px;
   }
 
-  /* --- Mandalas and kolam motifs that sit on top of text: hidden.
-         The full-width kolam border strips stay. --- */
-  .mandala,
-  .kolam-diamond,
-  .kolam-bg {
-    display: none;
+  /* --- Half-mandalas: shrunk and tucked into corners, flat edge on the
+         section edge, clear of the text (sized for ~390px phones).
+         The art is a 589×1095 half; rotated ones occupy a box twice as wide
+         as tall, hence the negative offsets that put the flat edge flush. --- */
+  .mandala {
+    width: 110px;
   }
+
+  /* Home: Performances */
+  .performances .mandala { width: 110px; }
+  .performances .mandala--top-left { top: -100px; left: 0; }
+  .performances .mandala--bottom-right { top: auto; bottom: -39px; right: -30px; width: 90px; }
+
+  /* Home: Upcoming events (flat edge along the top, right corner) */
+  .events .mandala--flat-top { top: -47px; right: -10px; }
+
+  /* Home: the one spanning Events → Support, peeking from the left edge
+     in the gap between the two sections */
+  .events-support > .mandala { top: 330px; left: 0; width: 72px; }
+
+  /* About intro */
+  .about-intro .mandala--about-top-left { top: -110px; left: -80px; width: 150px; }
+  .about-intro .mandala--about-bottom-right { top: auto; bottom: -39px; right: -30px; width: 90px; }
+
+  /* Collaborate: For Artists card (two stacked copies at each corner) */
+  .for-artists { padding-bottom: 48px; }
+  .for-artists .mandala { width: 90px; }
+  .for-artists .mandala--flat-top { top: -39px; left: auto; right: -40px; }
+  .for-artists .mandala--flat-bottom { top: auto; bottom: -39px; left: -40px; }
+
+  /* --- Diamond kolams: kept, shrunk, and centred as faint watermarks
+         behind their heading (as on desktop). --- */
+  .kolam-bg {
+    width: 300px;
+  }
+
+  .carnatic .kolam-diamond,
+  .story .kolam-diamond,
+  .past__youtube .kolam-diamond,
+  .support-card .kolam-diamond,
+  .support-card--sponsor .kolam-diamond,
+  .ways__thanks .kolam-diamond {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    width: 220px;
+    transform: translateX(-50%);
+  }
+
+  /* Carnatic: photo is on top now, so sit behind the heading below it */
+  .carnatic .kolam-diamond { top: auto; bottom: 150px; }
+  .story .kolam-diamond { top: 8px; width: 200px; }
+  .past__youtube .kolam-diamond { top: auto; bottom: -30px; }
+  .support-card .kolam-diamond,
+  .support-card--sponsor .kolam-diamond { top: -20px; }
+  .ways__thanks .kolam-diamond { top: -40px; }
+
+  /* Club Culture: a row of small kolams along the top and one behind the
+     text, instead of the desktop's scattered set */
+  .culture__kolams .kolam-diamond { width: 160px; }
+  .culture__kolams .kolam-diamond:nth-of-type(1) { left: -60px; top: -20px; }
+  .culture__kolams .kolam-diamond:nth-of-type(2) { left: calc(50% - 80px); top: -20px; }
+  .culture__kolams .kolam-diamond:nth-of-type(3) { left: auto; right: -60px; top: -20px; }
+  .culture__kolams .kolam-diamond:nth-of-type(5) { left: calc(50% - 110px); top: 130px; width: 220px; }
+  .culture__kolams .kolam-diamond:nth-of-type(4),
+  .culture__kolams .kolam-diamond:nth-of-type(n+6) { display: none; }
 
   /* --- Footer: stacked and centred; Warli art scaled to fit, uncropped --- */
   .site-footer__inner {
