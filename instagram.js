@@ -8,6 +8,8 @@
   var track = root.querySelector('.insta__track');
   var prev = root.querySelector('.insta__arrow--prev');
   var next = root.querySelector('.insta__arrow--next');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var videos = [];
 
   fetch('https://feeds.behold.so/' + root.dataset.beholdFeed)
     .then(function (res) { if (!res.ok) throw new Error(res.status); return res.json(); })
@@ -40,6 +42,25 @@
           badge.className = 'insta__badge insta__badge--play';
           badge.setAttribute('aria-hidden', 'true');
           a.appendChild(badge);
+
+          // Reels play silently in the tile. The cover image stays underneath
+          // as the poster; the video only loads once the tile is on screen.
+          if (post.mediaUrl && !reduceMotion) {
+            var video = document.createElement('video');
+            video.className = 'insta__video';
+            video.muted = true;
+            video.loop = true;
+            video.playsInline = true;
+            video.preload = 'none';
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+            video.setAttribute('aria-hidden', 'true');
+            video.dataset.src = post.mediaUrl;
+            video.addEventListener('playing', function () { this.parentNode.classList.add('is-playing'); });
+            video.addEventListener('error', function () { this.remove(); });
+            a.insertBefore(video, badge);
+            videos.push(video);
+          }
         }
 
         li.appendChild(a);
@@ -48,8 +69,27 @@
 
       root.hidden = false;
       updateArrows();
+      watchVideos();
     })
     .catch(function () { /* leave the strip hidden */ });
+
+  // Play each reel only while it's mostly visible; pause it when it isn't.
+  function watchVideos() {
+    if (!videos.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.src) v.src = v.dataset.src;
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.6 });
+    videos.forEach(function (v) { io.observe(v); });
+  }
 
   function step() { return track.clientWidth * 0.8; }
   prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
