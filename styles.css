@@ -2743,6 +2743,11 @@ p {
 .insta__kolams .kolam-diamond:nth-of-type(2) { left: 230px; top: 20px; }
 .insta__kolams .kolam-diamond:nth-of-type(3) { left: 637px; top: 20px; }
 .insta__kolams .kolam-diamond:nth-of-type(4) { left: 1004px; top: 20px; }
+/* Second row, staggered half a step like the single kolam beside the
+   Club Culture text, filling in behind the lower half of the reels */
+.insta__kolams .kolam-diamond:nth-of-type(5) { left: 10px; top: 330px; }
+.insta__kolams .kolam-diamond:nth-of-type(6) { left: 420px; top: 330px; }
+.insta__kolams .kolam-diamond:nth-of-type(7) { left: 830px; top: 330px; }
 
 .insta__head,
 .insta__viewport {
@@ -2768,9 +2773,8 @@ p {
 }
 
 .insta__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 3 * 16px) / 4);
+  --insta-h: 400px;
+  display: flex;
   gap: 16px;
   margin: 0;
   padding: 0;
@@ -2782,6 +2786,7 @@ p {
 .insta__track::-webkit-scrollbar { display: none; }
 
 .insta__item {
+  flex: 0 0 auto;
   scroll-snap-align: start;
 }
 
@@ -2794,9 +2799,11 @@ p {
 
 .insta__img {
   display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
+  /* Every tile is the same height; its width follows the post's own shape
+     (set inline from the feed: 4:5 posts, 9:16 reels), so nothing is cut. */
+  width: auto;
+  max-width: none;
+  height: var(--insta-h);
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -2889,7 +2896,7 @@ p {
 
   /* Swipe on phones: ~1.6 tiles visible so it's clear the row scrolls */
   .insta__track {
-    grid-auto-columns: 62%;
+    --insta-h: 340px;
     gap: 12px;
   }
 

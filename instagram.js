@@ -29,10 +29,20 @@
 
         var img = document.createElement('img');
         img.className = 'insta__img';
-        img.src = post.sizes.medium.mediaUrl;
+        // Use Instagram's own uncropped image (reel cover for videos) so the
+        // whole post shows; Behold's free-plan images are square crops, kept
+        // only as a fallback if the Instagram link has expired.
+        var full = post.mediaType === 'VIDEO' ? post.thumbnailUrl : post.mediaUrl;
+        var fallback = post.sizes.medium.mediaUrl;
+        var shape = post.sizes.medium.uncropped || { width: 700, height: 700 };
+        img.src = full || fallback;
+        img.addEventListener('error', function () {
+          if (this.src !== fallback) this.src = fallback;
+        });
         img.loading = 'lazy';
-        img.width = 700;
-        img.height = 700;
+        img.width = shape.width;
+        img.height = shape.height;
+        img.style.aspectRatio = shape.width + ' / ' + shape.height;
         var caption = (post.prunedCaption || '').trim();
         img.alt = caption ? 'Instagram post: ' + caption : 'Instagram post';
         a.appendChild(img);
