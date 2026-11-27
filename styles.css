@@ -2680,3 +2680,37 @@ p {
     background-size: 100% auto;
   }
 }
+
+/* Home hero on phones: the group photo is wide (2000×1443) and people run
+   almost edge to edge, so a tall cover crop cuts the sides off. Show the
+   whole photo at full width instead, fade its bottom (the saris, below the
+   faces) into deep brown, and set the text and buttons on that. */
+@media (max-width: 767px) {
+  .hero {
+    --hero-photo-h: calc(100vw * 1443 / 2000);
+    display: block;
+    min-height: 0;
+    padding: calc(var(--hero-photo-h) - 64px) 20px 40px;
+    background: var(--brown);
+  }
+
+  .hero__image {
+    inset: 0 0 auto;
+    height: var(--hero-photo-h);
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .hero::before {
+    inset: 0 0 auto;
+    height: var(--hero-photo-h);
+    background: linear-gradient(to bottom,
+      rgba(63, 31, 21, 0) 55%,
+      rgba(63, 31, 21, 0.75) 82%,
+      var(--brown) 100%);
+  }
+
+  .hero__content {
+    position: relative;
+  }
+}
