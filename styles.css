@@ -1,0 +1,2267 @@
+/* ==========================================================================
+   Laya at UC Berkeley — shared styles
+   Sections 1–6 are shared across pages (tokens, base, type, buttons, nav,
+   footer). Section 7 onward is Home-page specific.
+   ========================================================================== */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --teal: #317d6e;       /* Mandala Teal */
+  --brick: #923729;      /* Brick Red */
+  --brown: #3f1f15;      /* Deep Brown */
+  --copper: #845436;     /* Copper */
+  --off-white: #f8f4ef;  /* Off-white */
+
+  --font-heading: "Marcellus", Georgia, serif;
+  --font-ui: "Josefin Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  /* The Figma "Label" style (ABOUT LAYA, PERFORMANCES…) is set in Lato.
+     Swap to var(--font-ui) here to use Josefin Sans for labels instead. */
+  --font-label: var(--font-body);
+
+  --page-width: 1280px;
+  --nav-height: 80px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
+/* 2. Base ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--off-white);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 26px;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* 3. Type ------------------------------------------------------------------ */
+.h1 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.subheading {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.label {
+  font-family: var(--font-label);
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.small {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text-teal { color: var(--teal); }
+.text-white { color: var(--white); }
+
+/* Centered section heading: label + h2 */
+.section-heading {
+  text-align: center;
+  color: var(--teal);
+}
+
+/* 4. Buttons --------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  min-height: 48px;
+  padding: 14px 32px 12px; /* Josefin sits high; nudge down to look centred */
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn--lg {
+  min-width: 227px;
+  min-height: 55px;
+}
+
+.btn--teal {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn--teal:hover { background: #276659; }
+
+.btn--brick {
+  background: var(--brick);
+  color: var(--white);
+}
+.btn--brick:hover { background: #7a2d21; }
+
+.btn--outline-light {
+  border-color: var(--white);
+  color: var(--white);
+}
+.btn--outline-light:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn--outline-dark {
+  border-color: var(--black);
+  color: var(--black);
+}
+.btn--outline-dark:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* 5. Nav ------------------------------------------------------------------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--white);
+}
+
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 24px 0 32px;
+}
+
+.site-nav__logo img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__links a {
+  display: inline-block;
+  padding: 4px 0 2px;
+  border-bottom: 1px solid transparent;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+  color: var(--black);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.site-nav__links a:hover,
+.site-nav__links a[aria-current="page"] {
+  border-bottom-color: currentColor;
+}
+
+.site-nav__toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.site-nav__toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--black);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 767px) {
+  .site-nav__inner {
+    height: 64px;
+    padding: 0 12px 0 16px;
+  }
+
+  .site-nav__logo img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .site-nav__toggle {
+    display: block;
+  }
+
+  .site-nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 16px;
+    background: var(--white);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .site-nav__links.is-open {
+    display: flex;
+  }
+
+  .site-nav__links a {
+    display: block;
+    padding: 14px 24px 12px;
+    border-bottom: 0;
+    font-size: 15px;
+  }
+}
+
+/* 6. Footer ---------------------------------------------------------------- */
+.site-footer {
+  background: var(--copper);
+  color: var(--white);
+  overflow: hidden;
+}
+
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  column-gap: 48px;
+  padding: 40px 48px 24px;
+}
+
+/* Brand block: LAYA + contact rows, kept left-aligned inside so the icons
+   line up, and centred as a unit in its column. */
+.site-footer__brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.site-footer__brand {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.site-footer__contact {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__contact li + li {
+  margin-top: 16px;
+}
+
+.site-footer__contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.15em;
+}
+
+.site-footer__contact a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.site-footer__contact svg {
+  flex: none;
+  width: 40px;
+  height: 40px;
+}
+
+.site-footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.site-footer__links li + li {
+  margin-top: 20px;
+}
+
+.site-footer__links a {
+  font-family: var(--font-label);
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.site-footer__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.site-footer__disclaimer {
+  max-width: 220px;
+  text-align: center;
+}
+
+/* Warli dancers: one complete copy of the artwork (blank margins on both
+   sides), repeated edge to edge. "round" fits a whole number of copies
+   across any screen width and scales them evenly (aspect ratio kept), so no
+   dancer is ever cut off at the sides. */
+.site-footer__art {
+  height: 216px;
+  background-image: url("images/footer-warli.png");
+  background-repeat: round no-repeat;
+  background-position: left bottom;
+  background-size: 427px auto;
+}
+
+@media (max-width: 1023px) {
+  .site-footer__inner {
+    column-gap: 24px;
+    padding: 40px 24px 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+    padding: 40px 24px 16px;
+  }
+
+  .site-footer__brand-block {
+    align-items: center;
+  }
+
+  .site-footer__brand {
+    text-align: center;
+  }
+
+  .site-footer__contact svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .site-footer__links li + li {
+    margin-top: 12px;
+  }
+
+  .site-footer__art {
+    height: 120px;
+    background-size: 260px auto;
+  }
+}
+
+/* ==========================================================================
+   7. Home page
+   ========================================================================== */
+
+/* Repeating kolam border strip (shared). kolam-border.png is
+   kolam-border-right.png with only its transparent margins trimmed so the
+   pattern tiles without gaps. */
+.kolam-strip {
+  height: 80px;
+  background: url("images/kolam-border.png") repeat-x left top / auto 80px;
+}
+.kolam-strip--on-white { background-color: var(--white); }
+
+/* Above the footer: the upward-pointing version, resting on the footer.
+   kolam-border-up.png is kolam-border-support.png with only its
+   transparent margins trimmed. */
+.kolam-strip--up {
+  background-image: url("images/kolam-border-up.png");
+  background-position: left bottom;
+}
+
+/* Large faint kolam centred behind a section's text (shared). The image has
+   30% opacity baked in, so 0.267 gives the requested 8%. */
+.kolam-bg {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  max-width: none;
+  height: auto;
+  opacity: 0.267;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Decorative mandala (shared by every page). The source image is the right
+   half of a mandala (flat edge on its left) with 30% opacity baked in. */
+.mandala {
+  position: absolute;
+  z-index: 0;
+  width: 294px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+.mandala--flat-top { transform: rotate(90deg); }
+.mandala--flat-bottom { transform: rotate(-90deg); }
+
+/* Hero */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 923px;
+  padding: 0 24px 80px;
+  color: var(--white);
+  text-align: center;
+  isolation: isolate;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.hero__content {
+  width: 100%;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 40px;
+  margin-top: 20px;
+}
+
+/* Stats band */
+.stats {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.stats__list {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  justify-content: center;
+  margin: 0 auto;
+  padding: 49px 0;
+  list-style: none;
+  text-align: center;
+}
+
+.stats__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.stats__label {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.2em;
+}
+
+/* Kolam border that hangs below the stats band. Positions are the Figma
+   coordinates expressed as a share of the 1280px frame. */
+.kolam-row {
+  position: relative;
+  z-index: 1;
+  max-width: var(--page-width);
+  height: 0;
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.kolam-row img {
+  position: absolute;
+  top: calc(-64 / 1280 * min(100vw, 1280px));
+  height: auto;
+}
+
+.kolam-row__left {
+  left: 0;
+  width: calc(621 / 1280 * 100%);
+}
+
+.kolam-row__right {
+  left: calc(451 / 1280 * 100%);
+  width: calc(753 / 1280 * 100%);
+}
+
+/* About */
+.about {
+  background: var(--white);
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 468px 519px;
+  column-gap: 100px;
+  align-items: start;
+  padding: 43px 72px 37px;
+}
+
+.about__image {
+  width: 468px;
+  height: 370px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 9px;
+}
+
+.about__text .label {
+  color: var(--teal);
+}
+
+.about__text .body {
+  max-width: 466px;
+  min-height: 145px;
+}
+
+/* Performances */
+.performances {
+  position: relative;
+  overflow: hidden;
+  background: var(--off-white);
+}
+
+.performances__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 58px 24px 40px;
+}
+
+.performances__image {
+  width: 962px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 962 / 472;
+  margin-top: 37px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.performances .btn {
+  margin-top: 36px;
+}
+
+.performances .mandala {
+  width: 300px;
+  opacity: 0.833; /* 30% baked in × 0.833 ≈ 25% */
+}
+
+.performances .mandala--top-left {
+  top: -256px;
+  left: 0;
+}
+
+/* Half mandala resting on the section's bottom edge (as in the design);
+   it lines up with the one at the top of Upcoming Events. */
+.performances .mandala--bottom-right {
+  bottom: -132px;
+  right: max(-40px, calc((100vw - var(--page-width)) / 2 - 40px));
+}
+
+/* Events + Support share a wrapper so one mandala can span both. */
+.events-support {
+  position: relative;
+  overflow: hidden;
+}
+
+.events-support > .mandala {
+  top: 116px;
+  left: 0;
+}
+
+.events {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.events__inner {
+  position: relative;
+  z-index: 1;
+  padding: 58px 24px 38px;
+}
+
+.events .mandala--flat-top {
+  top: -127px;
+  right: max(-2px, calc((100vw - var(--page-width)) / 2 - 2px));
+}
+
+/* Event card (shared: Home + Collaborate) */
+.event-card {
+  display: grid;
+  grid-template-columns: 193px 1fr;
+  align-items: center;
+  max-width: 464px;
+  min-height: 166px;
+  margin: 36px auto 0;
+  padding: 0 50px 0 0;
+  border: 1px solid var(--black);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--teal);
+  text-align: center;
+}
+
+.event-card__date .h1 {
+  display: block;
+}
+
+.event-card__date .label {
+  display: block;
+}
+
+.event-card__details {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Support */
+.support {
+  position: relative;
+  overflow: hidden;
+}
+
+.support__inner {
+  position: relative;
+  z-index: 1;
+  padding: 58px 24px 24px;
+  text-align: center;
+}
+
+.support__inner .body {
+  margin-top: 10px;
+}
+
+.support .btn {
+  margin-top: 30px;
+}
+
+
+/* Home — tablet */
+@media (max-width: 1100px) {
+  .about__inner {
+    grid-template-columns: minmax(0, 468px) minmax(0, 519px);
+    column-gap: 48px;
+    justify-content: center;
+    padding: 110px 32px 48px;
+  }
+
+  .about__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 468 / 370;
+  }
+
+  .stats__list {
+    grid-template-columns: repeat(4, 1fr);
+    padding-inline: 24px;
+  }
+}
+
+/* Home — mobile */
+@media (max-width: 767px) {
+  .kolam-strip {
+    height: 56px;
+    background-size: auto 56px;
+  }
+
+  .h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .subheading {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .label {
+    font-size: 15px;
+    letter-spacing: 0.16em;
+  }
+
+  .mandala {
+    width: 180px;
+  }
+
+  .hero {
+    min-height: min(calc(100svh - 64px), 680px);
+    padding-bottom: 48px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hero__actions .btn {
+    width: 220px;
+  }
+
+  .stats__list {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 28px;
+    padding: 36px 16px;
+  }
+
+  .stats__label {
+    font-size: 14px;
+    letter-spacing: 0.15em;
+  }
+
+  .about__inner {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+    padding: 72px 24px 56px;
+  }
+
+  .about__text .body {
+    min-height: 0;
+    margin-bottom: 16px;
+  }
+
+  .performances__inner {
+    padding: 48px 16px 40px;
+  }
+
+  .performances__image {
+    margin-top: 28px;
+  }
+
+  .performances .mandala { width: 180px; }
+  .performances .mandala--top-left { top: -160px; }
+  .performances .mandala--bottom-right { bottom: -78px; right: -24px; }
+
+  .events__inner {
+    padding: 48px 16px 40px;
+  }
+
+  .events .mandala--flat-top { top: -78px; right: -10px; }
+  .events-support > .mandala { top: 200px; }
+
+  .event-card {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    padding: 28px 20px;
+  }
+
+  .support__inner {
+    padding: 48px 20px 24px;
+  }
+
+}
+
+/* ==========================================================================
+   8. Shared components used by the inner pages
+   ========================================================================== */
+
+/* Photos with rounded corners */
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+/* Kolam diamond motif. The image has 30% opacity baked in, so the
+   opacity values below are relative to that (0.5 ≈ 15%, 0.33 ≈ 10%). */
+.kolam-diamond {
+  position: absolute;
+  z-index: 0;
+  width: 484px;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+.kolam-diamond--20 { opacity: 0.67; }
+.kolam-diamond--15 { opacity: 0.5; }
+.kolam-diamond--10 { opacity: 0.33; }
+
+/* A row of hanging kolam (the same art used under the Home stats band) */
+.kolam-border {
+  position: absolute;
+  z-index: 0;
+  width: 742px;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Deep-brown content card */
+.brown-card {
+  border-radius: var(--radius-md);
+  background: var(--brown);
+  color: var(--white);
+  text-align: center;
+}
+
+/* Page intro header: teal label + black H1 + subheading, centred */
+.page-intro {
+  position: relative;
+  overflow: hidden;
+  background: var(--off-white);
+  text-align: center;
+}
+
+.page-intro__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.page-intro .label {
+  color: var(--teal);
+}
+
+/* Section heading pair used on inner pages (teal label, black heading) */
+.section-title {
+  text-align: center;
+}
+.section-title .label {
+  color: var(--teal);
+}
+
+/* Caption chip that sits on top of a photo */
+.tag {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--brown);
+  color: var(--white);
+  font-family: var(--font-label);
+  letter-spacing: 0.2em;
+  text-align: center;
+  white-space: nowrap;
+}
+.tag--copper { background: var(--copper); }
+.tag__title {
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+.tag__meta {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+/* ==========================================================================
+   9. About page
+   ========================================================================== */
+
+.about-intro {
+  min-height: 360px;
+}
+
+.about-intro .page-intro__inner {
+  padding: 92px 24px 60px;
+}
+
+.about-intro .mandala--about-top-left {
+  top: -201px;
+  left: -105px;
+  width: 369px;
+  transform: rotate(50.63deg);
+}
+
+.about-intro .mandala--about-bottom-right {
+  top: 98px;
+  right: max(14px, calc((100vw - var(--page-width)) / 2 + 14px));
+  width: 239px;
+}
+
+/* What is Carnatic music? */
+.carnatic {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.carnatic__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 447px 479px;
+  column-gap: 126px;
+  align-items: start;
+  min-height: 360px;
+  padding: 30px 24px 25px 112px;
+}
+
+.carnatic__text {
+  position: relative;
+  z-index: 1;
+  padding-top: 43px;
+}
+
+.carnatic__text .h2 {
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.carnatic .kolam-diamond {
+  top: 0;
+  left: 123px;
+  width: 365px;
+}
+
+.carnatic__image {
+  position: relative;
+  z-index: 1;
+  width: 479px;
+  aspect-ratio: 479 / 305;
+  border-radius: 10px;
+}
+
+/* Our story */
+.story {
+  position: relative;
+  overflow: hidden;
+}
+
+.story__inner {
+  position: relative;
+  padding: 29px 24px 19px 72px;
+}
+
+.story .label {
+  color: var(--teal);
+  text-align: center;
+}
+
+.story__grid {
+  display: grid;
+  grid-template-columns: 582px 476px;
+  column-gap: 51px;
+  align-items: start;
+  margin-top: 54px;
+}
+
+.story__image {
+  width: 582px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 18px;
+  object-fit: cover;
+}
+
+.story__text {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.story__text .h2 {
+  margin-bottom: 11px;
+}
+
+.story__text .body + .body {
+  margin-top: 26px;
+}
+
+.story .kolam-diamond {
+  top: -3px;
+  left: 663px;
+  width: 560px;
+}
+
+/* Meet the board */
+.board {
+  background: var(--white);
+}
+
+.board__inner {
+  padding: 15px 24px 46px;
+}
+
+.board__list {
+  display: grid;
+  grid-template-columns: repeat(4, 264px);
+  justify-content: center;
+  column-gap: 39px;
+  row-gap: 40px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.board__photo {
+  width: 100%;
+  height: 262px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.board__name {
+  margin-top: 7px;
+}
+
+.board__role {
+  margin-inline: -20px;
+  color: var(--teal);
+  text-transform: none;
+}
+
+/* Club culture */
+.culture {
+  position: relative;
+  overflow: hidden;
+}
+
+.culture__inner {
+  position: relative;
+  height: 960px;
+}
+
+.culture .label {
+  position: relative;
+  z-index: 1;
+  padding-top: 28px;
+  color: var(--teal);
+  text-align: center;
+}
+
+.culture__text {
+  position: absolute;
+  z-index: 1;
+  top: 371px;
+  left: 84px;
+  width: 366px;
+}
+
+.culture__text .h2 {
+  margin: 0 0 24px 71px;
+}
+
+.culture__photo {
+  position: absolute;
+  z-index: 1;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.culture__photo--1 { left: 472px; top: 104px; width: 512px; height: 437px; }
+.culture__photo--2 { left: 995px; top: 104px; width: 251px; height: 181px; }
+.culture__photo--3 { left: 1003px; top: 309px; width: 238px; height: 227px; }
+.culture__photo--4 { left: 472px; top: 554px; width: 469px; height: 377px; }
+.culture__photo--5 { left: 967px; top: 554px; width: 274px; height: 365px; }
+
+/* Kolam diamonds placed exactly as in the design: a row along the top,
+   a faint one behind the text, and a lower row (bottom-left plus two behind
+   the bottom photos; the last is doubled, as in Figma, for a stronger tone). */
+.culture__kolams .kolam-diamond:nth-of-type(1) { left: -217px; top: -60px; }
+.culture__kolams .kolam-diamond:nth-of-type(2) { left: 230px; top: -60px; }
+.culture__kolams .kolam-diamond:nth-of-type(3) { left: 637px; top: -60px; }
+.culture__kolams .kolam-diamond:nth-of-type(4) { left: 1004px; top: -60px; }
+.culture__kolams .kolam-diamond:nth-of-type(5) { left: 10px; top: 241px; }
+.culture__kolams .kolam-diamond:nth-of-type(6) { left: -237px; top: 536px; }
+.culture__kolams .kolam-diamond:nth-of-type(7) { left: 208px; top: 536px; }
+.culture__kolams .kolam-diamond:nth-of-type(8) { left: 692px; top: 536px; }
+.culture__kolams .kolam-diamond:nth-of-type(9) { left: 692px; top: 536px; }
+
+/* Auditions band */
+.auditions-band {
+  background: var(--brown);
+  color: var(--white);
+  text-align: center;
+}
+
+.auditions-band__inner {
+  padding: 94px 24px 76px;
+}
+
+.auditions-band .btn {
+  margin-top: 29px;
+}
+
+/* About — tablet */
+@media (max-width: 1100px) {
+  .carnatic__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 48px;
+    padding: 48px 32px;
+  }
+
+  .carnatic__image {
+    width: 100%;
+  }
+
+  .story__inner {
+    padding: 40px 32px 48px;
+  }
+
+  .story__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 40px;
+    margin-top: 32px;
+  }
+
+  .story__image {
+    width: 100%;
+  }
+
+  .board__list {
+    grid-template-columns: repeat(2, 264px);
+  }
+
+  .culture__inner {
+    height: auto;
+    padding: 0 32px 64px;
+  }
+
+  .culture__text {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    max-width: 560px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  .culture__text .h2 {
+    margin-left: 0;
+  }
+
+  .culture__gallery {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+
+  .culture__photo {
+    position: static;
+    width: 100%;
+    height: 280px;
+  }
+  .culture__photo--1,
+  .culture__photo--4 { grid-column: span 4; }
+  .culture__photo--2,
+  .culture__photo--3,
+  .culture__photo--5 { grid-column: span 2; }
+  .culture__photo--1,
+  .culture__photo--4 { width: 100%; }
+  .culture__photo--3 { order: 1; }
+  .culture__photo--5 { order: 2; }
+  .culture__photo--4 { order: 3; }
+  .culture__photo--2,
+  .culture__photo--3,
+  .culture__photo--5,
+  .culture__photo--1,
+  .culture__photo--4 { left: auto; top: auto; }
+}
+
+/* About — mobile */
+@media (max-width: 767px) {
+  .about-intro {
+    min-height: 0;
+  }
+
+  .about-intro .page-intro__inner {
+    padding: 72px 20px 64px;
+  }
+
+  .about-intro .mandala--about-top-left {
+    top: -150px;
+    left: -110px;
+    width: 220px;
+  }
+
+  .about-intro .mandala--about-bottom-right {
+    top: auto;
+    bottom: -60px;
+    right: 0;
+    width: 140px;
+  }
+
+  .carnatic__inner,
+  .story__grid {
+    grid-template-columns: 1fr;
+    row-gap: 28px;
+  }
+
+  .carnatic__inner {
+    padding: 48px 20px;
+  }
+
+  .carnatic__text {
+    padding-top: 0;
+  }
+
+  .carnatic .kolam-diamond {
+    left: 50%;
+    width: 280px;
+    transform: translateX(-50%);
+  }
+
+  .story__inner {
+    padding: 40px 20px 48px;
+  }
+
+  .story__image {
+    margin-top: 0;
+  }
+
+  .story .kolam-diamond {
+    left: auto;
+    right: -120px;
+    width: 360px;
+  }
+
+  .board__inner {
+    padding: 40px 16px 56px;
+  }
+
+  .board__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    margin-top: 24px;
+  }
+
+  .board__photo {
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .board__name {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .board__role {
+    margin-inline: 0;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.12em;
+  }
+
+  .culture__inner {
+    padding: 0 16px 48px;
+  }
+
+  .culture__text {
+    margin: 32px auto;
+  }
+
+  .culture__gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .culture__photo {
+    height: 180px;
+  }
+  .culture__photo--1,
+  .culture__photo--4 { grid-column: span 2; height: 240px; }
+  .culture__photo--2,
+  .culture__photo--3,
+  .culture__photo--5 { grid-column: span 1; }
+
+  .auditions-band__inner {
+    padding: 64px 20px;
+  }
+}
+
+/* ==========================================================================
+   10. Collaborate page
+   ========================================================================== */
+
+.collab-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 461px;
+  overflow: hidden;
+  color: var(--white);
+  isolation: isolate;
+}
+
+.collab-hero__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.collab-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.collab-hero__content {
+  padding: 0 24px 20px 27px;
+}
+
+.collab-hero .h1 { margin-top: -6px; }
+.collab-hero .body { margin-top: -4px; }
+
+.collab-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 29px;
+  margin-top: 8px;
+}
+
+.collab-hero__actions .btn--wide {
+  min-width: 195px;
+}
+
+/* Trusted by */
+.trusted {
+  background: var(--off-white);
+}
+
+.trusted__inner {
+  padding: 28px 71px 45px 26px;
+}
+
+.trusted .label {
+  color: var(--teal);
+  text-align: center;
+}
+
+.trusted__logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 31px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trusted__logos img {
+  width: 95px;
+  height: 95px;
+  object-fit: contain;
+}
+
+.trusted__logos .trusted__logo--wide {
+  width: 135px;
+  height: 56px;
+}
+
+/* Past performances */
+.past {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.past__inner {
+  position: relative;
+  padding: 57px 24px 49px;
+}
+
+.past__intro {
+  text-align: center;
+}
+
+.past__intro .label { color: var(--teal); }
+.past__intro .h1 { margin-top: 0; }
+.past__intro .h2 { margin-top: 14px; }
+
+.past__grid {
+  display: grid;
+  grid-template-columns: 590px 582px;
+  justify-content: center;
+  column-gap: 29px;
+  margin-top: 27px;
+}
+
+.past__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.past__col--left { gap: 66px; }
+.past__col--right { gap: 36px; }
+
+.past__item {
+  position: relative;
+  margin: 0;
+}
+
+.past__item--onam { width: 571px; max-width: 100%; }
+.past__item--hosted { width: 572px; max-width: 100%; margin-left: 6px; }
+.past__item--ragathon { width: 590px; max-width: 100%; }
+.past__item--suits { width: 582px; max-width: 100%; }
+
+.past__item--onam .tag { left: 4.03%; top: 80.06%; min-width: 170px; min-height: 58px; padding: 4px 18px; text-align: left; }
+.past__item--hosted .tag { left: 3.5%; top: 6.78%; min-width: 235px; min-height: 73px; padding: 4px 12px; }
+.past__item--ragathon .tag { left: 47.63%; top: 83.3%; min-width: 267px; min-height: 57px; padding: 4px 12px; }
+.past__item--suits .tag { left: 4.3%; top: 8.39%; min-width: 267px; min-height: 57px; padding: 4px 12px; }
+
+.past__youtube {
+  position: relative;
+  display: grid;
+  grid-template-columns: 663px 1fr;
+  align-items: center;
+  max-width: 1201px;
+  margin: 28px auto 0;
+}
+
+.past__video {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.past__video img {
+  transition: transform 0.3s ease;
+}
+
+.past__video:hover img {
+  transform: scale(1.02);
+}
+
+.past__youtube-text {
+  position: relative;
+  z-index: 1;
+  max-width: 516px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.past__youtube-text a:hover {
+  color: var(--teal);
+}
+
+.past__youtube .kolam-diamond {
+  top: -46px;
+  left: 686px;
+}
+
+/* What we perform */
+.styles {
+  background: var(--off-white);
+}
+
+.styles__inner {
+  padding: 9px 24px 49px;
+}
+
+.styles__list {
+  display: grid;
+  grid-template-columns: repeat(3, 357px);
+  justify-content: center;
+  gap: 24px 58px;
+  margin: 23px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.styles__card {
+  min-height: 221px;
+  padding: 30px 24px;
+}
+
+.styles__card .body {
+  max-width: 220px;
+  margin: 18px auto 0;
+}
+
+/* How booking works */
+.bookings {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.bookings__inner {
+  position: relative;
+  z-index: 1;
+  padding: 15px 24px 29px;
+}
+
+.bookings .section-title .h1 {
+  margin-top: 16px;
+}
+
+.bookings .kolam-border--left { top: -61px; left: max(-198px, calc((100vw - var(--page-width)) / 2 - 198px)); }
+.bookings .kolam-border--right { top: -61px; left: calc(50% + 91px); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 335px);
+  justify-content: center;
+  gap: 24px 59px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  min-height: 396px;
+  padding: 137px 24px 28px;
+}
+
+.step__number {
+  position: absolute;
+  top: 41px;
+  left: 24px;
+}
+
+.step .subheading {
+  max-width: 218px;
+  margin: 13px auto 0;
+}
+
+.step .btn {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.for-artists {
+  position: relative;
+  overflow: hidden;
+  max-width: 1123px;
+  min-height: 240px;
+  margin: 30px auto 0;
+  padding: 34px 24px 37px;
+  border-radius: var(--radius-md);
+  background: var(--teal);
+  color: var(--white);
+  text-align: center;
+}
+
+.for-artists > *:not(.mandala) {
+  position: relative;
+  z-index: 1;
+}
+
+.for-artists .body {
+  max-width: 487px;
+  margin: 4px auto 0;
+}
+
+.for-artists .btn {
+  margin-top: 22px;
+}
+
+/* Two stacked copies of the 30% mandala ≈ the design's 50% */
+.for-artists .mandala { width: 239px; }
+.for-artists .mandala--flat-top { top: -103px; left: calc(50% + 240px); }
+.for-artists .mandala--flat-bottom { top: -102px; left: 32px; }
+
+/* Upcoming events (Collaborate layout) */
+.upcoming {
+  position: relative;
+  overflow: hidden;
+  background: var(--off-white);
+}
+
+/* Continuous kolam row across the top, edge to edge */
+.upcoming__kolam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.upcoming__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 121px;
+  padding: 141px 24px 53px 267px;
+}
+
+.upcoming__heading {
+  color: var(--teal);
+  text-align: center;
+}
+
+.upcoming__heading span {
+  display: block;
+}
+
+.upcoming__heading span + span {
+  margin-top: 12px;
+}
+
+.upcoming .event-card {
+  flex: 0 1 464px;
+  margin: 0;
+}
+
+/* Collaborate — tablet */
+@media (max-width: 1100px) {
+  .trusted__inner {
+    padding-inline: 32px;
+  }
+
+  .trusted__logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px 40px;
+  }
+
+  .past__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+
+  .past__col--left,
+  .past__col--right { gap: 24px; }
+
+  .past__item--hosted { margin-left: 0; }
+
+  .past__youtube {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .past__youtube .kolam-diamond {
+    left: auto;
+    right: -80px;
+  }
+
+  .styles__list,
+  .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+
+  .upcoming__inner {
+    justify-content: center;
+    gap: 64px;
+    padding-left: 24px;
+  }
+}
+
+/* Collaborate — mobile */
+@media (max-width: 767px) {
+  .collab-hero {
+    min-height: 520px;
+  }
+
+  .collab-hero__content {
+    padding: 0 20px 28px;
+  }
+
+  .collab-hero .h1 { margin-top: 4px; }
+  .collab-hero .body { margin-top: 8px; }
+
+  .collab-hero__actions {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .trusted__inner {
+    padding: 32px 16px 40px;
+  }
+
+  .trusted__logos {
+    gap: 20px 28px;
+  }
+
+  .trusted__logos img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .trusted__logos .trusted__logo--wide {
+    width: 120px;
+    height: 50px;
+  }
+
+  .past__inner {
+    padding: 48px 16px;
+  }
+
+  .past__intro .h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .past__grid,
+  .past__youtube {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 24px;
+  }
+
+  .past__col--left,
+  .past__col--right { gap: 24px; }
+
+  .past__item .tag {
+    transform: scale(0.8);
+    transform-origin: left top;
+  }
+
+  /* Keep the Ragathon chip inside the photo; it still covers the same spot */
+  .past__item--ragathon .tag {
+    left: auto;
+    right: 4%;
+    transform-origin: right top;
+  }
+
+  .past__youtube-text .h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .past__youtube .kolam-diamond {
+    top: auto;
+    bottom: -120px;
+    width: 320px;
+  }
+
+  .styles__inner {
+    padding: 40px 16px 48px;
+  }
+
+  .styles__list,
+  .steps {
+    grid-template-columns: 1fr;
+    max-width: 357px;
+    margin-inline: auto;
+  }
+
+  .styles__card {
+    min-height: 0;
+  }
+
+  .bookings__inner {
+    padding: 72px 16px 40px;
+  }
+
+  .bookings .kolam-border {
+    width: 480px;
+  }
+
+  .bookings .kolam-border--left { top: -40px; left: -130px; }
+  .bookings .kolam-border--right { top: -40px; left: 200px; }
+
+  .step {
+    min-height: 0;
+    padding: 96px 24px 32px;
+  }
+
+  .step--cta {
+    padding-bottom: 112px;
+  }
+
+  .for-artists {
+    padding: 32px 20px;
+  }
+
+  .for-artists .mandala { width: 160px; }
+  .for-artists .mandala--flat-top { top: -70px; left: auto; right: -20px; }
+  .for-artists .mandala--flat-bottom { top: auto; bottom: -70px; left: -20px; }
+
+
+  .upcoming__inner {
+    flex-direction: column;
+    gap: 28px;
+    padding: 96px 16px 48px;
+  }
+
+  .upcoming__heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .upcoming__heading span + span {
+    margin-top: 0;
+  }
+
+  .upcoming .event-card {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   11. Support page
+   ========================================================================== */
+
+.support-intro .page-intro__inner {
+  padding: 174px 24px 26px;
+}
+
+
+.support-intro .body {
+  max-width: 631px;
+  margin: 0 auto;
+}
+
+.support-intro__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 54px;
+  margin-top: 16px;
+}
+
+/* Your impact */
+.impact {
+  background: var(--white);
+}
+
+.impact__inner {
+  padding: 35px 24px 27px;
+}
+
+.impact__list {
+  display: grid;
+  grid-template-columns: repeat(4, 254px);
+  justify-content: center;
+  gap: 24px 60px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 316px;
+  padding: 27px 16px 16px;
+  border: 1px solid var(--black);
+}
+
+.impact-card .body {
+  max-width: 172px;
+  margin-top: 31px;
+}
+
+.impact-card img {
+  width: auto;
+  margin-top: auto;
+}
+
+.impact-card__icon--drum { height: 152px; }
+.impact-card__icon--violin { height: 166px; }
+.impact-card__icon--veena { height: 173px; margin-bottom: -6px; }
+.impact-card__icon--flute { height: 120px; }
+
+/* Continuous kolam row along the top of Ways to support, edge to edge */
+.ways__kolam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+/* Ways to support */
+.ways {
+  position: relative;
+  overflow: hidden;
+}
+
+.ways__inner {
+  position: relative;
+  padding: 124px 24px 49px 62px;
+}
+
+.ways .label {
+  color: var(--teal);
+  text-align: center;
+}
+
+
+.ways__grid {
+  display: grid;
+  grid-template-columns: 578px 554px;
+  column-gap: 44px;
+  align-items: start;
+  margin-top: 31px;
+}
+
+.ways__col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ways__col--left { padding-top: 67px; }
+
+.support-card {
+  position: relative;
+  width: 543px;
+  max-width: 100%;
+  min-height: 283px;
+  padding: 18px 24px 32px;
+  background: var(--white);
+  text-align: center;
+}
+
+.support-card .body {
+  margin-top: 25px;
+}
+
+.support-card .btn {
+  margin-top: 25px;
+}
+
+.support-card--donate {
+  margin-left: 35px;
+  border-radius: var(--radius-md);
+}
+
+.support-card--sponsor {
+  margin: 82px 0 0 -15px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.support-card .kolam-diamond {
+  top: -86px;
+  left: 43px;
+  width: 458px;
+}
+
+.support-card--sponsor .kolam-diamond {
+  top: -103px;
+  left: 51px;
+}
+
+.ways__photo--donate {
+  width: 578px;
+  margin-top: 62px;
+  border-radius: 0;
+}
+
+.ways__photo--group {
+  width: 554px;
+  height: 643px;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.ways__thanks {
+  position: relative;
+  margin-top: 137px;
+  text-align: center;
+}
+
+.ways__thanks .kolam-diamond {
+  top: -144px;
+  left: 60px;
+  width: 397px;
+}
+
+.ways__thanks .h1 {
+  position: relative;
+  z-index: 1;
+}
+
+.ways__questions {
+  margin-top: 54px;
+  text-align: center;
+}
+
+.ways__questions a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.ways__questions a:hover {
+  color: var(--teal);
+}
+
+/* Supporters group photo */
+.supporters-photo {
+  width: 100%;
+  height: min(880px, 68.75vw);
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Support — tablet */
+@media (max-width: 1100px) {
+  .impact__list {
+    grid-template-columns: repeat(2, 254px);
+  }
+
+  .ways__inner {
+    padding: 96px 32px 48px;
+  }
+
+  .ways__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 32px;
+  }
+
+  .support-card--donate,
+  .support-card--sponsor {
+    margin-left: 0;
+  }
+
+  .ways__photo--donate,
+  .ways__photo--group {
+    width: 100%;
+  }
+
+  .ways__photo--group {
+    height: auto;
+    aspect-ratio: 554 / 643;
+  }
+
+}
+
+/* Support — mobile */
+@media (max-width: 767px) {
+  .support-intro .page-intro__inner {
+    padding: 112px 20px 48px;
+  }
+
+
+  .support-intro__actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .impact__inner {
+    padding: 40px 16px 72px;
+  }
+
+  .impact__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .impact-card {
+    min-height: 260px;
+    padding: 20px 10px 12px;
+  }
+
+  .impact-card .subheading {
+    font-size: 17px;
+  }
+
+  .impact-card .body {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .impact-card img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+  }
+
+  .impact-card__icon--veena {
+    margin-bottom: 0;
+  }
+
+  .ways__inner {
+    padding: 72px 16px 48px;
+  }
+
+  .ways__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ways__col--left {
+    padding-top: 24px;
+  }
+
+  .ways__col--right {
+    margin-top: 48px;
+  }
+
+  .support-card {
+    min-height: 0;
+  }
+
+  .support-card .h1 {
+    font-size: 32px;
+  }
+
+  .support-card .kolam-diamond {
+    left: 50%;
+    width: 320px;
+    transform: translateX(-50%);
+  }
+
+  .support-card--sponsor {
+    margin-top: 24px;
+  }
+
+  .ways__photo--donate {
+    margin-top: 24px;
+  }
+
+  .ways__thanks {
+    margin-top: 48px;
+  }
+
+  .ways__thanks .kolam-diamond {
+    left: 50%;
+    width: 280px;
+    transform: translateX(-50%);
+  }
+
+
+  .supporters-photo {
+    height: auto;
+    aspect-ratio: 1279 / 880;
+  }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laya at UC Berkeley</title>
+  <meta name="description" content="Laya is UC Berkeley's Indian classical music group: concerts, student performers, and a community preserving Carnatic and Hindustani music.">
+  <link rel="icon" href="images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&family=Lato:wght@400&family=Marcellus&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== Nav (shared) ===== -->
+  <header class="site-nav">
+    <nav class="site-nav__inner container" aria-label="Main">
+      <a class="site-nav__logo" href="index.html">
+        <img src="images/logo.png" alt="Laya, UC Berkeley — home" width="70" height="70">
+      </a>
+
+      <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-links" aria-label="Menu">
+        <span class="site-nav__toggle-bar"></span>
+        <span class="site-nav__toggle-bar"></span>
+        <span class="site-nav__toggle-bar"></span>
+      </button>
+
+      <ul class="site-nav__links" id="site-nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="collaborate.html">Collab</a></li>
+        <li><a href="support.html">Support Us</a></li>
+        <li><a href="about.html#auditions">Auditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <img class="hero__image" src="images/hero.jpg" alt="Laya members in saris standing together on the steps of a Berkeley campus building" width="2558" height="1846">
+      <div class="hero__content">
+        <p class="eyebrow">UC Berkeley &middot; Since 2015</p>
+        <h1 class="h1">Laya at UC Berkeley</h1>
+        <p class="subheading">Concerts, student performers, and a community preserving Indian classical music</p>
+        <div class="hero__actions">
+          <a class="btn btn--outline-light" href="support.html">Support</a>
+          <a class="btn btn--teal" href="about.html#auditions">Auditions</a>
+          <a class="btn btn--outline-light" href="collaborate.html#bookings">Book Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <section class="stats" aria-label="Laya in numbers">
+      <ul class="stats__list container">
+        <li><span class="stats__number">2015</span><span class="stats__label">FOUNDED</span></li>
+        <li><span class="stats__number">60+</span><span class="stats__label">PERFORMANCES</span></li>
+        <li><span class="stats__number">30</span><span class="stats__label">MEMBERS</span></li>
+        <li><span class="stats__number">20+</span><span class="stats__label">ARTISTS HOSTED</span></li>
+      </ul>
+    </section>
+
+    <div class="kolam-strip kolam-strip--on-white" aria-hidden="true"></div>
+
+    <!-- ===== About ===== -->
+    <section class="about">
+      <div class="about__inner container">
+        <img class="about__image" src="images/about-laya.jpg" alt="Three Laya members smiling and making the Cal Bears hand sign in front of a campus building" width="936" height="740">
+        <div class="about__text">
+          <p class="label">About Laya</p>
+          <h2 class="h2">Keeping Carnatic music alive at Berkeley</h2>
+          <p class="body">Laya is UC Berkeley's Indian classical music group. We perform Carnatic and Hindustani music, from traditional pieces to fusion, and bring professional artists to campus for free concerts and lecture-demonstrations.</p>
+          <a class="btn btn--outline-dark" href="about.html">Learn more &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Performances ===== -->
+    <section class="performances">
+      <img class="mandala mandala--top-left" src="images/mandala-half.png" alt="" aria-hidden="true">
+      <img class="mandala mandala--flat-bottom mandala--bottom-right" src="images/mandala-half.png" alt="" aria-hidden="true">
+      <div class="performances__inner container">
+        <div class="section-heading">
+          <p class="label">Performances</p>
+          <h2 class="h2">Where We&rsquo;ve Performed</h2>
+        </div>
+        <img class="performances__image" src="images/performance.jpg" alt="Laya musicians performing on stage under a projected &ldquo;Laya of Berkeley&rdquo; slide" width="1924" height="944">
+        <a class="btn btn--lg btn--outline-dark" href="collaborate.html#past-performances">See performances &rarr;</a>
+      </div>
+    </section>
+
+    <div class="events-support">
+      <!-- ===== Upcoming events ===== -->
+      <section class="events">
+        <img class="mandala mandala--flat-top" src="images/mandala-half.png" alt="" aria-hidden="true">
+        <div class="events__inner container">
+          <div class="section-heading">
+            <p class="label">Upcoming</p>
+            <h2 class="h2">EVENTS</h2>
+          </div>
+
+          <article class="event-card">
+            <p class="event-card__date">
+              <span class="h1">14th</span>
+              <span class="label">November</span>
+            </p>
+            <div class="event-card__details">
+              <h3 class="subheading">Suits and Sarees</h3>
+              <p class="body">Krutch Theatre, Berkeley CA</p>
+              <p class="small">6:30pm</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Support ===== -->
+      <section class="support">
+        <img class="kolam-bg" src="images/kolam-diamond.png" alt="" aria-hidden="true">
+        <div class="support__inner container">
+          <div class="section-heading">
+            <p class="label">Support us</p>
+            <h2 class="h2">Help keep live Carnatic music free</h2>
+          </div>
+          <p class="body">Every Laya concert is free. Your support covers artist fees and venues.</p>
+          <a class="btn btn--lg btn--brick" href="support.html">Support Laya &rarr;</a>
+        </div>
+      </section>
+
+      <img class="mandala" src="images/mandala-half.png" alt="" aria-hidden="true">
+    </div>
+  </main>
+
+  <div class="kolam-strip kolam-strip--up" aria-hidden="true"></div>
+
+  <!-- ===== Footer (shared) ===== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__brand-block">
+        <p class="site-footer__brand">LAYA</p>
+        <ul class="site-footer__contact">
+          <li>
+            <a href="mailto:layaofberkeley@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>layaofberkeley@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/layaofberkeley" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              <span>@layaofberkeley</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/layaberkeley" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+              <span>layaberkeley</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <nav aria-label="Footer">
+        <ul class="site-footer__links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="collaborate.html">Collaborate</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="about.html#auditions">Auditions</a></li>
+        </ul>
+      </nav>
+
+      <p class="site-footer__disclaimer small">We are a student group acting independently of the University of California. We take full responsibility for our organization and this website.</p>
+    </div>
+    <div class="site-footer__art" aria-hidden="true"></div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>
