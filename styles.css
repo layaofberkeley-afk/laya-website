@@ -2737,6 +2737,19 @@ p {
   padding: 0 84px 64px;
 }
 
+/* Kolam row continuing the Club Culture pattern down behind the reels:
+   same art, size and columns as the row along the top of the section. */
+.insta__kolams .kolam-diamond:nth-of-type(1) { left: -217px; top: 20px; }
+.insta__kolams .kolam-diamond:nth-of-type(2) { left: 230px; top: 20px; }
+.insta__kolams .kolam-diamond:nth-of-type(3) { left: 637px; top: 20px; }
+.insta__kolams .kolam-diamond:nth-of-type(4) { left: 1004px; top: 20px; }
+
+.insta__head,
+.insta__viewport {
+  position: relative;
+  z-index: 1;
+}
+
 .insta__head {
   display: flex;
   flex-wrap: wrap;
@@ -2847,6 +2860,26 @@ p {
 @media (max-width: 767px) {
   .insta {
     padding: 8px 20px 48px;
+  }
+
+  /* Phones: same three-kolam row as Club Culture, centred behind the
+     heading and Follow button */
+  .insta__kolams { display: none; }
+  .insta__head::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 170px;
+    background:
+      url("images/kolam-diamond.png") left 50% / auto 100% no-repeat,
+      url("images/kolam-diamond.png") center 50% / auto 100% no-repeat,
+      url("images/kolam-diamond.png") right 50% / auto 100% no-repeat;
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
   }
 
   .insta__head {

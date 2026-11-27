@@ -44,7 +44,7 @@
           a.appendChild(badge);
 
           // Reels play silently in the tile. The cover image stays underneath
-          // as the poster; the video only loads once the tile is on screen.
+          // as the poster; the video only loads on first hover.
           if (post.mediaUrl && !reduceMotion) {
             var video = document.createElement('video');
             video.className = 'insta__video';
@@ -73,22 +73,29 @@
     })
     .catch(function () { /* leave the strip hidden */ });
 
-  // Play each reel only while it's mostly visible; pause it when it isn't.
+  // Reels show their cover until someone hovers (or tabs to) the tile; then
+  // the video loads on first use and plays muted. Leaving the tile pauses it
+  // and goes back to the cover. Touch screens have no hover, so they keep
+  // the cover and a tap opens the reel on Instagram.
   function watchVideos() {
-    if (!videos.length || !('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var v = entry.target;
-        if (entry.isIntersecting) {
-          if (!v.src) v.src = v.dataset.src;
-          var p = v.play();
-          if (p && p.catch) p.catch(function () {});
-        } else {
-          v.pause();
-        }
-      });
-    }, { threshold: 0.6 });
-    videos.forEach(function (v) { io.observe(v); });
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    videos.forEach(function (v) {
+      var link = v.parentNode;
+      function start() {
+        if (!v.src) v.src = v.dataset.src;
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      function stop() {
+        v.pause();
+        v.currentTime = 0;
+        link.classList.remove('is-playing');
+      }
+      link.addEventListener('mouseenter', start);
+      link.addEventListener('focus', start);
+      link.addEventListener('mouseleave', stop);
+      link.addEventListener('blur', stop);
+    });
   }
 
   function step() { return track.clientWidth * 0.8; }
