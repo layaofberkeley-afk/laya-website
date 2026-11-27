@@ -2352,9 +2352,22 @@ p {
     padding: 120px 20px 64px;
   }
 
-  /* Hanging kolam border at the top of Bookings needs room above the label */
+  /* Bookings: the two overlapping hanging borders are replaced by one
+     continuous kolam strip (same as Upcoming / Ways to support) */
+  .bookings .kolam-border { display: none; }
+
+  .bookings::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: url("images/kolam-border.png") repeat-x left top / auto 56px;
+  }
+
   .bookings__inner {
-    padding-top: 104px;
+    padding-top: 120px;
   }
 
   .culture__inner {
@@ -2540,10 +2553,15 @@ p {
   /* Home: Performances */
   .performances .mandala { width: 110px; }
   .performances .mandala--top-left { top: -100px; left: 0; }
-  .performances .mandala--bottom-right { top: auto; bottom: -39px; right: -30px; width: 90px; }
+  /* These two halves meet at the Performances / Events boundary to form one
+     full mandala: same width, same horizontal centre (the right screen
+     edge), each flat edge flush with the boundary. Box is 100×186, so
+     (186 − 100) / 2 = 43px puts the rotated flat edge on the section edge. */
+  .performances .mandala--bottom-right { top: auto; bottom: -43px; right: -50px; width: 100px; }
+  .performances__inner { padding-bottom: 80px; }
 
   /* Home: Upcoming events (flat edge along the top, right corner) */
-  .events .mandala--flat-top { top: -47px; right: -10px; }
+  .events .mandala--flat-top { top: -43px; right: -50px; width: 100px; }
 
   /* Home: the one spanning Events → Support, peeking from the left edge
      in the gap between the two sections */
