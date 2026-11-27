@@ -2265,3 +2265,292 @@ p {
     aspect-ratio: 1279 / 880;
   }
 }
+
+/* ==========================================================================
+   12. Mobile system (≤767px) — the single source of truth for phone layout.
+   Loaded last so it overrides the per-page mobile rules above.
+   Spec: 20px side padding, 64px section spacing, H1 32 / H2 24 / body 16 /
+   labels 12, no horizontal scrolling.
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* --- Safety net: nothing may be wider than the screen --- */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  /* --- Type scale --- */
+  body,
+  .body {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .h1,
+  .past__youtube-text.h1,
+  .past__youtube-text .h1,
+  .upcoming__heading,
+  .support-card .h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .h2,
+  .past__intro .h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .label,
+  .eyebrow,
+  .stats__label,
+  .board__role {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.16em;
+  }
+
+  .impact-card .body {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  /* Board names sit in small 2-up cards; keep them a step below H2 */
+  .board__name {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  /* --- Section spacing: 64px top/bottom, 20px sides --- */
+  .about__inner,
+  .performances__inner,
+  .events__inner,
+  .support__inner,
+  .about-intro .page-intro__inner,
+  .support-intro .page-intro__inner,
+  .carnatic__inner,
+  .story__inner,
+  .board__inner,
+  .auditions-band__inner,
+  .trusted__inner,
+  .past__inner,
+  .styles__inner,
+  .bookings__inner,
+  .impact__inner {
+    padding: 64px 20px;
+  }
+
+  /* Sections that open with a kolam strip: 64px of space below the strip */
+  .upcoming__inner,
+  .ways__inner {
+    padding: 120px 20px 64px;
+  }
+
+  /* Hanging kolam border at the top of Bookings needs room above the label */
+  .bookings__inner {
+    padding-top: 104px;
+  }
+
+  .culture__inner {
+    padding: 0 20px 64px;
+  }
+
+  .culture .label {
+    padding-top: 64px;
+  }
+
+  .stats__list {
+    padding: 32px 20px;
+  }
+
+  .site-nav__inner {
+    padding: 0 10px 0 20px;
+  }
+
+  /* --- Hero (Home + Collaborate): ~70% of the screen, readable text,
+         full-width stacked buttons --- */
+  .hero,
+  .collab-hero {
+    min-height: 70vh;
+    min-height: 70svh;
+  }
+
+  .hero {
+    padding: 0 20px 40px;
+  }
+
+  .collab-hero__content {
+    width: 100%;
+    padding: 0 20px 40px;
+  }
+
+  .hero::before,
+  .collab-hero::before {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.8) 100%);
+  }
+
+  .hero__content,
+  .collab-hero__content {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero .subheading {
+    margin-top: 8px;
+  }
+
+  .hero__actions,
+  .collab-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hero__actions .btn,
+  .collab-hero__actions .btn,
+  .collab-hero__actions .btn--wide {
+    width: 100%;
+    min-width: 0;
+    text-shadow: none;
+  }
+
+  /* Buttons never force a row wider than the screen */
+  .btn,
+  .btn--lg {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* --- Stats: 2×2 --- */
+  .stats__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 28px;
+  }
+
+  /* --- Two-column sections stack: photo on top, text below --- */
+  .about__inner,
+  .carnatic__inner,
+  .story__grid,
+  .past__youtube,
+  .ways__grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 28px;
+  }
+
+  .carnatic__image {
+    order: -1;
+  }
+
+  .story__grid {
+    margin-top: 24px;
+  }
+
+  /* Support page: each photo sits above its card */
+  .ways__photo--donate {
+    order: -1;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+
+  .ways__col--left {
+    padding-top: 32px;
+  }
+
+  .ways__col--right {
+    margin-top: 64px;
+  }
+
+  .support-card,
+  .support-card--donate,
+  .support-card--sponsor {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .ways__photo--group {
+    margin-bottom: 24px;
+  }
+
+  .support-card--sponsor {
+    margin-top: 0;
+  }
+
+  /* --- Card rows --- */
+  .styles__list,
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: none;
+  }
+
+  .board__list,
+  .impact__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .event-card {
+    max-width: none;
+  }
+
+  /* --- Images: fill the width, keep aspect ratio --- */
+  .about__image,
+  .carnatic__image,
+  .story__image,
+  .performances__image,
+  .ways__photo--donate,
+  .ways__photo--group,
+  .past__item,
+  .past__item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .ways__photo--group {
+    aspect-ratio: 554 / 643;
+  }
+
+  /* Club culture gallery: [wide] [small small] [small small] — no gaps */
+  .culture__photo--1,
+  .culture__photo--2,
+  .culture__photo--3,
+  .culture__photo--4,
+  .culture__photo--5 {
+    order: 0;
+  }
+
+  .culture__photo--4,
+  .culture__photo--5 {
+    grid-column: span 1;
+    height: 220px;
+  }
+
+  /* --- Mandalas and kolam motifs that sit on top of text: hidden.
+         The full-width kolam border strips stay. --- */
+  .mandala,
+  .kolam-diamond,
+  .kolam-bg {
+    display: none;
+  }
+
+  /* --- Footer: stacked and centred; Warli art scaled to fit, uncropped --- */
+  .site-footer__inner {
+    padding: 48px 20px 24px;
+  }
+
+  .site-footer__disclaimer {
+    max-width: 300px;
+  }
+
+  .site-footer__art {
+    height: auto;
+    aspect-ratio: 1058 / 432;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+  }
+}
