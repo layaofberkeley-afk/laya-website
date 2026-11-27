@@ -139,6 +139,20 @@
           <img class="culture__photo culture__photo--5" src="images/culture-5.jpg" alt="Members taking a selfie on campus" width="548" height="730">
         </div>
       </div>
+
+      <!-- Instagram strip: filled by instagram.js from the Behold feed; stays
+           hidden if the feed can't be loaded. -->
+      <div class="insta container" data-behold-feed="lHkQhjR7tZh95cF7nOkC" hidden>
+        <div class="insta__head">
+          <h3 class="subheading insta__title">From our Instagram</h3>
+          <a class="btn btn--outline-dark" href="https://www.instagram.com/layaofberkeley/" target="_blank" rel="noopener">Follow @layaofberkeley</a>
+        </div>
+        <div class="insta__viewport">
+          <button class="insta__arrow insta__arrow--prev" type="button" aria-label="Scroll back">&#8249;</button>
+          <ul class="insta__track"></ul>
+          <button class="insta__arrow insta__arrow--next" type="button" aria-label="Scroll forward">&#8250;</button>
+        </div>
+      </div>
     </section>
 
     <!-- ===== Auditions ===== -->
@@ -204,5 +218,6 @@
   </footer>
 
   <script src="nav.js"></script>
+  <script src="instagram.js" defer></script>
 </body>
 </html>
