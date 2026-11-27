@@ -2681,13 +2681,28 @@ p {
   }
 }
 
-/* Home hero on phones: the group photo is wide (2000×1443) and people run
+/* Home hero on tablet/desktop: the cover photo (2048×1151) is wide and the
+   group stands almost edge to edge, so keep the hero a wide 2:1 band
+   (capped at the old 923px) instead of a tall box that crops people off the
+   sides. Anchor near the bottom so the top of the projector screen gets
+   trimmed, not the group. */
+@media (min-width: 768px) {
+  .hero {
+    min-height: min(50vw, 923px);
+  }
+
+  .hero__image {
+    object-position: center 90%;
+  }
+}
+
+/* Home hero on phones: the group photo is wide (2048×1151) and people run
    almost edge to edge, so a tall cover crop cuts the sides off. Show the
    whole photo at full width instead, fade its bottom (the saris, below the
    faces) into deep brown, and set the text and buttons on that. */
 @media (max-width: 767px) {
   .hero {
-    --hero-photo-h: calc(100vw * 1443 / 2000);
+    --hero-photo-h: calc(100vw * 1151 / 2048);
     display: block;
     min-height: 0;
     padding: calc(var(--hero-photo-h) - 64px) 20px 40px;
@@ -2698,7 +2713,7 @@ p {
     inset: 0 0 auto;
     height: var(--hero-photo-h);
     object-fit: cover;
-    object-position: center top;
+    object-position: center;
   }
 
   .hero::before {
